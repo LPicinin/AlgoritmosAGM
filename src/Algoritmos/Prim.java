@@ -120,9 +120,6 @@ public class Prim
 
     public void insereNumeros(String numeros, int pos)
     {
-        String aux, aux2 = "";
-        int j = 0;
-        //
         String[] temp = numeros.split(" ");
         for (int i = 0; i < temp.length; i++)
         {
