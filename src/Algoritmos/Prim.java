@@ -10,7 +10,7 @@ import java.util.Collections;
 public class Prim
 {
 
-    private String letra[];
+    private String[] vertices;
     private int ma[][];
     private int tl;
     private ArrayList<String> lig;
@@ -42,12 +42,12 @@ public class Prim
 
     public String[] getLetra()
     {
-        return letra;
+        return vertices;
     }
 
     public void setLetra(String[] letra)
     {
-        this.letra = letra;
+        this.vertices = letra;
     }
 
     public int[][] getMA()
@@ -82,7 +82,7 @@ public class Prim
 
     public void inicializaLetra()
     {
-        letra = new String[tl];
+        vertices = new String[tl];
     }
 
     public void inicializaNumero()
@@ -114,7 +114,7 @@ public class Prim
         String[] param = letras.split(" ");
         for (String l : param)
         {
-            letra[j++] = l;
+            vertices[j++] = l;
         }
     }
 
@@ -144,7 +144,7 @@ public class Prim
 
         for (int i = 0; i < tl; i++)
         {
-            texto += letra[i];
+            texto += vertices[i];
             texto += "    ";
         }
 
@@ -152,7 +152,7 @@ public class Prim
 
         for (int i = 0; i < tl; i++)
         {
-            texto += letra[i];
+            texto += vertices[i];
             texto += "    ";
 
             for (int j = 0; j < tl; j++)
@@ -176,11 +176,11 @@ public class Prim
         custos = new ArrayList<>();
         int menor = Integer.MAX_VALUE;
 
-        for (int passos = 0; passos < tl; passos++)
+        for (int passos = 0; passos < vertices.length-1; passos++)
         {
-            for (int i = 0; i < tl; i++)
+            for (int i = 0; i < vertices.length; i++)
             {
-                for (int j = 0; j < tl; j++)
+                for (int j = 0; j < vertices.length; j++)
                 {
                     if (flag[i] == 1 && flag[j] == 0)
                     {
@@ -204,7 +204,7 @@ public class Prim
             {
                 custoG += menor;
                 custos.add(menor);
-                lig.add(letra[pos1] + "," + letra[pos2]);
+                lig.add(vertices[pos1] + "," + vertices[pos2]);
             }
             menor = Integer.MAX_VALUE;
         }
