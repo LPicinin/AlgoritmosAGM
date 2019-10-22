@@ -67,7 +67,7 @@ public class Prim
             custo = 0;
             for (int[] is : this.agm)
             {
-                //custo += ma[is[0]][is[1]];
+                custo += ma[is[0]][is[1]];
             }
         }
         return custo;
@@ -97,4 +97,97 @@ public class Prim
         return index;
     }
 
+    public void prim2()
+    {
+        int menor = Integer.MAX_VALUE;
+        int[] menorPos = new int[]
+        {
+            0, 0
+        };
+        //T = new ArrayList<>();
+        custo = 0;
+        int cont = 0;
+        int[] flag = new int[ma.length];
+        flag[0] = 1;
+
+        for (int aux = 0; aux < ma.length - 1; aux++)
+        {
+            for (int i = 0; i < ma.length; i++)
+            {
+                for (int j = 0; j < ma.length; j++)
+                {
+                    if (flag[i] == 1 && flag[j] == 0)
+                    {
+                        if (ma[i][j] != 0 && menor > ma[i][j])
+                        {
+                            menor = ma[i][j];
+
+                            menorPos[0] = i;
+                            menorPos[1] = j;
+                        }
+                    }
+                }
+            }
+
+            flag[menorPos[0]] = 1;
+            flag[menorPos[1]] = 1;
+
+            if (menor != Integer.MAX_VALUE)
+            {
+                agm.add(menorPos.clone());
+                custo += menor;
+            }
+
+            menor = Integer.MAX_VALUE;
+        }
+    }
+
+    ////////////////////
+    public int prim()
+    {
+        int menor = Integer.MAX_VALUE;
+        String menorL = "", save = "";
+        ArrayList<String> T = new ArrayList<>();
+        custo = 0;
+        int tl = ma[0].length;
+        int[] flag = new int[tl];
+        flag[0] = 1;
+        ArrayList<String> valor = new ArrayList<>();
+
+        for (int aux = 0; aux < tl - 1; aux++)
+        {
+            for (int i = 0; i < tl; i++)
+            {
+                for (int j = 0; j < tl; j++)
+                {
+                    if (flag[i] == 1 && flag[j] == 0)
+                    {
+                        if (ma[i][j] != 0 && menor > ma[i][j])
+                        {
+                            menor = ma[i][j];
+                            menorL = ((char) i) + "," + ((char) j);
+                        }
+                    }
+                }
+            }
+
+            String[] lt = menorL.split(",");
+            int pos1 = (lt[0].charAt(0) - 'a');
+            int pos2 = lt[1].charAt(0) - 'a';
+
+            flag[pos1] = 1;
+            flag[pos2] = 1;
+
+            if (menor != Integer.MAX_VALUE)
+            {
+                valor.add("" + menor);
+                T.add(menorL);
+                custo += menor;
+            }
+
+            menor = Integer.MAX_VALUE;
+            menorL = "";
+        }
+        return custo;
+    }
 }
