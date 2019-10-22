@@ -15,7 +15,6 @@ public class MA
     private int tl;
     private ArrayList<String> T;
     private Integer custo;
-    private ArrayList<String> historico;
     private ArrayList<String> valor;
 
     public MA()
@@ -25,17 +24,7 @@ public class MA
         this.tl = 0;
         this.T = null;
         this.custo = 0;
-        this.historico = null;
-    }
-
-    public ArrayList<String> getHistorico()
-    {
-        return historico;
-    }
-
-    public void setHistorico(ArrayList<String> historico)
-    {
-        this.historico = historico;
+        //this.historico = null;
     }
 
     public ArrayList<String> getValor()
@@ -185,14 +174,12 @@ public class MA
         return texto;
     }
 
-    //----------------------------------------------------------------------------------------------------------------------
     public int prim()
     {
         int menor = Integer.MAX_VALUE;
-        String menorL = "";
+        int []posIndex = new int[2];
         T = new ArrayList<>();
         custo = 0;
-        int cont = 0;
         int[] flag = new int[tl];
         flag[0] = 1;
         valor = new ArrayList<>();
@@ -208,16 +195,15 @@ public class MA
                         if (ma[i][j] != 0 && menor > ma[i][j])
                         {
                             menor = ma[i][j];
-                            menorL = letra[i] + "," + letra[j];
+                            posIndex[0] = i;
+                            posIndex[1] = j;
                         }
                     }
                 }
             }
 
-            String[] lt = menorL.split(",");
-            //int pos1 = posDaLetra(lt[0]);
-            int pos1 = (lt[0].charAt(0) - 'A');
-            int pos2 = (lt[1].charAt(0) - 'A');
+            int pos1 = posIndex[0];
+            int pos2 = posIndex[1];
 
             flag[pos1] = 1;
             flag[pos2] = 1;
@@ -225,12 +211,11 @@ public class MA
             if (menor != Integer.MAX_VALUE)
             {
                 valor.add("" + menor);
-                T.add(menorL);
+                T.add(letra[pos1]+","+ letra[pos2]);
                 custo += menor;
             }
 
             menor = Integer.MAX_VALUE;
-            menorL = "";
         }
         return custo;
     }
