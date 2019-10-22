@@ -70,8 +70,6 @@ public class Prim
         this.qt_vertices = qt_vertices;
     }
 
-    
-
     public ArrayList<String> getArestas()
     {
         return lig;
@@ -124,18 +122,11 @@ public class Prim
     {
         String aux, aux2 = "";
         int j = 0;
-
-        for (int i = 0; i < numeros.length(); i++)
+        //
+        String[] temp = numeros.split(" ");
+        for (int i = 0; i < temp.length; i++)
         {
-            aux = numeros.charAt(i) + "";
-            if (!aux.contains(" "))
-            {
-                aux2 += aux;
-            } else
-            {
-                ma[pos][j++] = Integer.parseInt(aux2);
-                aux2 = "";
-            }
+            ma[pos][i] = Integer.parseInt(temp[i]);
         }
     }
 
@@ -223,7 +214,7 @@ public class Prim
         {
             for (int j = 0; j < vertices.length; j++)
             {
-                if(ma[i][j] < menor)
+                if (ma[i][j] < menor)
                 {
                     menor = ma[i][j];
                     pos = j;
