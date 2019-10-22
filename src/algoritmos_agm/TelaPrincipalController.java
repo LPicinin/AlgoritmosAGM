@@ -55,7 +55,7 @@ public class TelaPrincipalController implements Initializable
         colCusto.setCellValueFactory(new PropertyValueFactory<>("custo"));
     }
 
-    public void leitorMA(String path)
+    public void carregaMA(String path)
     {
         try
         {
@@ -92,7 +92,7 @@ public class TelaPrincipalController implements Initializable
             File arq = fc.showOpenDialog(null);
             if (arq != null)
             {
-                leitorMA(arq.getAbsolutePath());
+                carregaMA(arq.getAbsolutePath());
             }
         }
     }

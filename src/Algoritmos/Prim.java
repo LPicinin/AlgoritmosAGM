@@ -12,7 +12,7 @@ public class Prim
 
     private String[] vertices;
     private int ma[][];
-    private int tl;
+    private int qt_vertices;
     private ArrayList<String> lig;
     private Integer custoG;
     private ArrayList<Integer> custos;
@@ -60,15 +60,17 @@ public class Prim
         this.ma = numero;
     }
 
-    public int getTl()
+    public int getQt_vertices()
     {
-        return tl;
+        return qt_vertices;
     }
 
-    public void setTl(int tl)
+    public void setQt_vertices(int qt_vertices)
     {
-        this.tl = tl;
+        this.qt_vertices = qt_vertices;
     }
+
+    
 
     public ArrayList<String> getArestas()
     {
@@ -82,12 +84,12 @@ public class Prim
 
     public void inicializaLetra()
     {
-        vertices = new String[tl];
+        vertices = new String[qt_vertices];
     }
 
     public void inicializaNumero()
     {
-        ma = new int[tl][tl];
+        ma = new int[qt_vertices][qt_vertices];
     }
 
     public Integer getCusto()
@@ -105,7 +107,7 @@ public class Prim
         int aux = 0;
         String[] param = letras.split(" ");
         aux = param.length;
-        setTl(aux);
+        setQt_vertices(aux);
     }
 
     public void insereLetras(String letras)
@@ -142,7 +144,7 @@ public class Prim
     {
         String texto = "       ";
 
-        for (int i = 0; i < tl; i++)
+        for (int i = 0; i < qt_vertices; i++)
         {
             texto += vertices[i];
             texto += "    ";
@@ -150,12 +152,12 @@ public class Prim
 
         texto += "\n";
 
-        for (int i = 0; i < tl; i++)
+        for (int i = 0; i < qt_vertices; i++)
         {
             texto += vertices[i];
             texto += "    ";
 
-            for (int j = 0; j < tl; j++)
+            for (int j = 0; j < qt_vertices; j++)
             {
                 texto += ma[i][j];
                 texto += "    ";
@@ -170,7 +172,7 @@ public class Prim
     {
         int[] posIndex = new int[2];
         custoG = 0;
-        int[] flag = new int[tl];
+        int[] flag = new int[vertices.length];
         flag[0] = 1;
         //flag[0] = getPosInicial();
         lig = new ArrayList<>();
@@ -186,7 +188,7 @@ public class Prim
                     //se esta linha está habilitada e ainda não desabilitei esa coluna
                     if (flag[i] == 1 && flag[j] == 0)
                     {
-                        if (ma[i][j] != 0 && menor > ma[i][j])
+                        if (ma[i][j] != 0 && ma[i][j] < menor)
                         {
                             menor = ma[i][j];
                             posIndex[0] = i;
