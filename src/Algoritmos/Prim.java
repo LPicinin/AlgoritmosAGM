@@ -110,25 +110,12 @@ public class Prim
 
     public void insereLetras(String letras)
     {
-        String aux = "";
         int j = 0;
         String[] param = letras.split(" ");
         for (String l : param)
         {
             letra[j++] = l;
         }
-        /*
-        for (int i = 0; i < letras.length(); i++)
-        {
-            if (letras.charAt(i) != ' ')
-            {
-                aux += letras.charAt(i) + "";
-            } else
-            {
-                letra[j++] = aux;
-                aux = "";
-            }
-        }*/
     }
 
     public void insereNumeros(String numeros, int pos)
@@ -215,11 +202,10 @@ public class Prim
 
             if (menor < Integer.MAX_VALUE)
             {
+                custoG += menor;
                 custos.add(menor);
                 lig.add(letra[pos1] + "," + letra[pos2]);
-                custoG += menor;
             }
-
             menor = Integer.MAX_VALUE;
         }
         return custoG;
