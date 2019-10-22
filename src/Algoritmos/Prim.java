@@ -19,7 +19,7 @@ public class Prim
 
     public Prim()
     {
-        
+
     }
 
     public Prim(String linha)
@@ -172,11 +172,12 @@ public class Prim
         custoG = 0;
         int[] flag = new int[tl];
         flag[0] = 1;
+        //flag[0] = getPosInicial();
         lig = new ArrayList<>();
         custos = new ArrayList<>();
         int menor = Integer.MAX_VALUE;
 
-        for (int passos = 0; passos < vertices.length-1; passos++)
+        for (int passos = 0; passos < vertices.length - 1; passos++)
         {
             for (int i = 0; i < vertices.length; i++)
             {
@@ -209,6 +210,24 @@ public class Prim
             menor = Integer.MAX_VALUE;
         }
         return custoG;
+    }
+
+    private int getPosInicial()
+    {
+        int menor = Integer.MAX_VALUE;
+        int pos = 1;//default
+        for (int i = 0; i < vertices.length; i++)
+        {
+            for (int j = 0; j < vertices.length; j++)
+            {
+                if(ma[i][j] < menor)
+                {
+                    menor = ma[i][j];
+                    pos = j;
+                }
+            }
+        }
+        return pos;
     }
 
 }
