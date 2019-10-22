@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algoritmos_agm.TelaPrincipalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="334.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algoritmos_agm.TelaPrincipalController">
    <top>
-      <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="AGM - Prim">
                <font>
@@ -31,29 +31,32 @@
                   <Insets bottom="5.0" top="5.0" />
                </HBox.margin>
             </TextArea>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0">
                <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#evtGeraAgm" text="Processar" />
+                  <Button mnemonicParsing="false" onMouseClicked="#evtGeraAgm" prefWidth="85.0" text="Processar" />
+                  <Button mnemonicParsing="false" onMouseClicked="#evtAbreArquivo2" prefHeight="25.0" prefWidth="85.0" text="Abrir" />
                </children>
             </VBox>
          </children>
       </HBox>
    </bottom>
    <center>
-      <TableView fx:id="tbAGM" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="colLigOrigem" prefWidth="109.0" text="De" />
-            <TableColumn fx:id="colLigDestino" prefWidth="109.0" text="Para" />
-          <TableColumn fx:id="colCusto" minWidth="0.0" prefWidth="85.0" text="Custo" />
-        </columns>
-      </TableView>
-   </center>
-   <right>
-      <FlowPane alignment="TOP_CENTER" prefHeight="305.0" prefWidth="98.0" BorderPane.alignment="CENTER">
+      <VBox BorderPane.alignment="CENTER">
          <children>
-            <Label text="Custo:" />
-            <Label fx:id="lblCusto" text="0" />
+            <TableView fx:id="tbAGM" prefHeight="305.0" prefWidth="464.0">
+              <columns>
+                <TableColumn fx:id="colLigOrigem" prefWidth="112.0" text="De" />
+                  <TableColumn fx:id="colLigDestino" prefWidth="112.0" text="Para" />
+                <TableColumn fx:id="colCusto" minWidth="0.0" prefWidth="112.0" text="Custo" />
+              </columns>
+            </TableView>
+            <FlowPane alignment="CENTER" prefHeight="58.0" prefWidth="402.0">
+               <children>
+                  <Label text="Custo:" />
+                  <Label fx:id="lblCusto" text="0" />
+               </children>
+            </FlowPane>
          </children>
-      </FlowPane>
-   </right>
+      </VBox>
+   </center>
 </BorderPane>

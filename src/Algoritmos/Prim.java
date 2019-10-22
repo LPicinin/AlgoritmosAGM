@@ -183,6 +183,7 @@ public class Prim
             {
                 for (int j = 0; j < vertices.length; j++)
                 {
+                    //se esta linha está habilitada e ainda não desabilitei esa coluna
                     if (flag[i] == 1 && flag[j] == 0)
                     {
                         if (ma[i][j] != 0 && menor > ma[i][j])

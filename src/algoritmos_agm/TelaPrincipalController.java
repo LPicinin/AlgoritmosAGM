@@ -83,7 +83,7 @@ public class TelaPrincipalController implements Initializable
     @FXML
     private void evtAbreArquivo(MouseEvent event)
     {
-        if (event.getButton() == MouseButton.MIDDLE)
+        if (event == null || event.getButton() == MouseButton.MIDDLE)
         {
 
             FileChooser fc = new FileChooser();
@@ -119,5 +119,11 @@ public class TelaPrincipalController implements Initializable
             new Alert(Alert.AlertType.ERROR, ex.getMessage()+"\n"+ex.getCause(), ButtonType.OK).show();
         }
 
+    }
+
+    @FXML
+    private void evtAbreArquivo2(MouseEvent event)
+    {
+        evtAbreArquivo(null);
     }
 }
