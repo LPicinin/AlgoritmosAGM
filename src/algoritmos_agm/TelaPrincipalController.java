@@ -114,7 +114,7 @@ public class TelaPrincipalController implements Initializable
     @FXML
     private void evtGeraAgm(MouseEvent event)
     {
-        ma.prim();
+        Integer c = ma.prim();
         ArrayList<String> t = ma.getT();
         int val;
         String []text1;
@@ -125,6 +125,6 @@ public class TelaPrincipalController implements Initializable
             text1 = ma.getT().get(i).split(",");
             tbAGM.getItems().add(new Ligacao(text1[0].charAt(0), text1[1].charAt(0), val));
         }
-        lblCusto.setText(ma.getCusto().toString());
+        lblCusto.setText(c.toString());
     }
 }

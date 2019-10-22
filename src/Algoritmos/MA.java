@@ -14,7 +14,7 @@ public class MA
     private int ma[][];
     private int tl;
     private ArrayList<String> T;
-    private Integer Custo;
+    private Integer custo;
     private ArrayList<String> historico;
     private ArrayList<String> valor;
 
@@ -24,7 +24,7 @@ public class MA
         this.ma = null;
         this.tl = 0;
         this.T = null;
-        this.Custo = 0;
+        this.custo = 0;
         this.historico = null;
     }
 
@@ -100,12 +100,12 @@ public class MA
 
     public Integer getCusto()
     {
-        return Custo;
+        return custo;
     }
 
     public void setCusto(int Custo)
     {
-        this.Custo = Custo;
+        this.custo = Custo;
     }
 
     public void getParaTL(String letras)
@@ -186,12 +186,12 @@ public class MA
     }
 
     //----------------------------------------------------------------------------------------------------------------------
-    public void prim()
+    public int prim()
     {
         int menor = Integer.MAX_VALUE;
-        String menorL = "", save = "";
+        String menorL = "";
         T = new ArrayList<>();
-        Custo = 0;
+        custo = 0;
         int cont = 0;
         int[] flag = new int[tl];
         flag[0] = 1;
@@ -226,13 +226,13 @@ public class MA
             {
                 valor.add("" + menor);
                 T.add(menorL);
-                Custo += menor;
+                custo += menor;
             }
 
             menor = Integer.MAX_VALUE;
             menorL = "";
         }
-
+        return custo;
     }
 
 }
