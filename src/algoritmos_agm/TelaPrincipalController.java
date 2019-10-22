@@ -6,7 +6,7 @@
 package algoritmos_agm;
 
 import Algoritmos.Ligacao;
-import Algoritmos.MA;
+import Algoritmos.Prim;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -31,7 +33,7 @@ import javafx.stage.FileChooser;
 public class TelaPrincipalController implements Initializable
 {
 
-    private MA ma;
+    private Prim algoritmo;
     @FXML
     private TextArea txEntrada;
     @FXML
@@ -60,24 +62,18 @@ public class TelaPrincipalController implements Initializable
             BufferedReader buffRead = new BufferedReader(new FileReader(path));
             String linha = "";
 
-            ma = new MA();
-
             linha = buffRead.readLine();
-
-            ma.getParaTL(linha);
-            ma.inicializaLetra();
-            ma.inicializaNumero();
-            ma.insereLetras(linha);
+            algoritmo = new Prim(linha);
 
             int i = 0;
             while ((linha = buffRead.readLine()) != null)
             {
-                ma.insereNumeros(linha, i);
+                algoritmo.insereNumeros(linha, i);
                 i++;
             }
 
             buffRead.close();
-            txEntrada.setText(ma.exibe());
+            txEntrada.setText(algoritmo.toString());
         } catch (Exception e)
         {
             System.out.println(e.getMessage());
@@ -104,17 +100,24 @@ public class TelaPrincipalController implements Initializable
     @FXML
     private void evtGeraAgm(MouseEvent event)
     {
-        Integer c = ma.prim();
-        ArrayList<String> t = ma.getT();
-        int val;
-        String[] text1;
-        tbAGM.getItems().clear();
-        for (int i = 0; i < ma.getT().size(); i++)
+        try
         {
-            val = Integer.parseInt(ma.getValor().get(i));
-            text1 = ma.getT().get(i).split(",");
-            tbAGM.getItems().add(new Ligacao(text1[0].charAt(0), text1[1].charAt(0), val));
+            Integer c = algoritmo.prim();
+            ArrayList<String> ars = algoritmo.getArestas();
+            int val;
+            String[] t;
+            tbAGM.getItems().clear();
+            for (int i = 0; i < algoritmo.getArestas().size(); i++)
+            {
+                val = algoritmo.getValor().get(i);
+                t = algoritmo.getArestas().get(i).split(",");
+                tbAGM.getItems().add(new Ligacao(t[0].charAt(0), t[1].charAt(0), val));
+            }
+            lblCusto.setText(c.toString());
+        } catch (Exception ex)
+        {
+            new Alert(Alert.AlertType.ERROR, ex.getMessage()+"\n"+ex.getCause(), ButtonType.OK).show();
         }
-        lblCusto.setText(c.toString());
+
     }
 }
