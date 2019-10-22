@@ -101,11 +101,7 @@ public class MA
     {
         int aux = 0;
         String[] param = letras.split(" ");
-        for (String string : param)
-        {
-            aux++;
-        }
-
+        aux = param.length;
         setTl(aux);
     }
 
@@ -113,7 +109,12 @@ public class MA
     {
         String aux = "";
         int j = 0;
-
+        String []param = letras.split(" ");
+        for (String l : param)
+        {
+            letra[j++] = l;
+        }
+        /*
         for (int i = 0; i < letras.length(); i++)
         {
             if (letras.charAt(i) != ' ')
@@ -124,7 +125,7 @@ public class MA
                 letra[j++] = aux;
                 aux = "";
             }
-        }
+        }*/
     }
 
     public void insereNumeros(String numeros, int pos)
@@ -184,7 +185,7 @@ public class MA
         flag[0] = 1;
         valor = new ArrayList<>();
 
-        for (int aux = 0; aux < tl - 1; aux++)
+        for (int aux = 0; aux < tl; aux++)
         {
             for (int i = 0; i < tl; i++)
             {

@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -72,18 +70,10 @@ public class TelaPrincipalController implements Initializable
             ma.insereLetras(linha);
 
             int i = 0;
-            while (true)
+            while ((linha = buffRead.readLine()) != null)
             {
-                linha = buffRead.readLine();
-
-                if (linha != null)
-                {
-                    ma.insereNumeros(linha, i);
-                    i++;
-                } else
-                {
-                    break;
-                }
+                ma.insereNumeros(linha, i);
+                i++;
             }
 
             buffRead.close();
@@ -117,7 +107,7 @@ public class TelaPrincipalController implements Initializable
         Integer c = ma.prim();
         ArrayList<String> t = ma.getT();
         int val;
-        String []text1;
+        String[] text1;
         tbAGM.getItems().clear();
         for (int i = 0; i < ma.getT().size(); i++)
         {
