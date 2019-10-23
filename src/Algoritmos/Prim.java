@@ -169,34 +169,33 @@ public class Prim
 
         for (int passos = 0; passos < vertices.length - 1; passos++)
         {
-            for (int i = 0; i < vertices.length; i++)
+            for (int lin = 0; lin < vertices.length; lin++)
             {
-                for (int j = 0; j < vertices.length; j++)
+                for (int col = 0; col < vertices.length; col++)
                 {
-                    //se esta linha está habilitada e ainda não desabilitei esa coluna
-                    if (flag[i] == 1 && flag[j] == 0)
+                    if (flag[lin] == 1 && flag[col] == 0)
                     {
-                        if (ma[i][j] != 0 && ma[i][j] < menor)
+                        if (ma[lin][col] != 0 && ma[lin][col] < menor)
                         {
-                            menor = ma[i][j];
-                            posIndex[0] = i;
-                            posIndex[1] = j;
+                            menor = ma[lin][col];
+                            posIndex[0] = lin;
+                            posIndex[1] = col;
                         }
                     }
                 }
             }
 
-            int pos1 = posIndex[0];
-            int pos2 = posIndex[1];
+            int l = posIndex[0];
+            int c = posIndex[1];
 
-            flag[pos1] = 1;
-            flag[pos2] = 1;
+            flag[l] = 1;
+            flag[c] = 1;
 
             if (menor < Integer.MAX_VALUE)
             {
                 custoG += menor;
                 custos.add(menor);
-                lig.add(vertices[pos1] + "," + vertices[pos2]);
+                lig.add(vertices[l] + "," + vertices[c]);
             }
             menor = Integer.MAX_VALUE;
         }
